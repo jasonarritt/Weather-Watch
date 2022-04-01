@@ -4,13 +4,61 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Weather Watch</title>
 </head>
 <body>
     <header>
-        <h1>Weather Watch</h1>
+        <h1 class="text-center">Weather Watch</h1>
     </header>
-    
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 bg-light">
+                <div id="search-box">
+                    <h5 class="mt-1">Search for a City:</h5>
+                    <div class="input-group mb-3">
+                        <input id="enter-city" type="text" class="form-control" placeholder="San Diego" aria-label="Enter a city">
+                        <div class="input-group-append">
+                            <button class="btn btn-info" type="button" id="search-button">Search
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <form id="city-search"></form>
+                </div>
+                <div class="">
+                    <h3 class="border-bottom-2 mb-4">Search history</h3>
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <div class="row mr-0">
+                    <div class="col-lg-11 card m-3" id="today-weather">
+                        <div class="card-body">
+                            <h3 id="city-name" class="city-name align-middle">City Name Placeholder</h3>
+                            <p id="temperature">Temp placeholder</p>
+                            <p id="humidity">Humidity placeholder</p>
+                            <p id="wind-speed">Wind placeholder</p>
+                            <p id="UV-index">UV placeholder</p>
+                            <img id="today-picture" alt="Depiction of the weather for the day">
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="forecast-container">
+                    <div class="col-12">
+                        <h3>Projected Forecast</h3>
+                    </div>
+                    <div id="forecast" class="row">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
