@@ -1,5 +1,5 @@
 // OpenWeather API KEY: 4dbb43246a043fc03198de34a46d252d
-
+let searchFormEl = document.getElementById("city-search-form");
 let searchTermEl = document.querySelector("#search-city");
 
 
@@ -120,6 +120,8 @@ function fetchWeatherData(cityName) {
     });
 }
 
+
+
 function formSubmitHandler(event) {
     event.preventDefault();
     let searchTerm = searchTermEl.value.trim();
@@ -127,15 +129,11 @@ function formSubmitHandler(event) {
 
     if (searchTerm) { 
         fetchWeatherData(searchTerm);
-        searchFormEl.value = "";
+        // searchFormEl.value = "";
     } else {
         alert("Please Enter the Name of a City to Search");
     }
 }
 
-let searchFormEl = document.getElementById("city-search-form");
 
 searchFormEl.addEventListener("submit", formSubmitHandler);
-
-
-fetchWeatherData("san diego")
