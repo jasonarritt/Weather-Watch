@@ -33,6 +33,15 @@ function fetchWeatherData(cityName) {
                 let long = data.coord.lon;
                 let UVapiURL = "http://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + lat + "&lon=" + long + "&appid=" + apiKey + "&cnt=1";
 
+                let todayWeatherPictureEl = document.getElementById("today-weather-picture");
+                let currentWeatherPicture = data.weather[0].icon;
+                todayWeatherPictureEl.setAttribute("src", "https://openweathermap.org/img/wn/" + currentWeatherPicture + "@4x.png");
+                todayWeatherPictureEl.setAttribute("alt", data.weather[0].description);
+                
+
+
+
+
                 fetch(UVapiURL)
                 .then(function (response) {
                     if (response.ok) {
@@ -63,9 +72,6 @@ function fetchWeatherData(cityName) {
                 .catch(function (error) {
                     alert("Unable to connect to server");
                 });
-
-
-
 
             });
         } else {
