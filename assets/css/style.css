@@ -24,3 +24,7 @@ h5 {
   color: rgb(78, 135, 182);
 
 }
+
+#today-info-container {
+  justify-content: space-around;
+}
