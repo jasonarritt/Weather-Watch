@@ -1,9 +1,37 @@
 // OpenWeather API KEY: 4dbb43246a043fc03198de34a46d252d
 let searchFormEl = document.getElementById("city-search-form");
 let searchTermEl = document.querySelector("#search-city");
+let searchHistoryContainerEl = document.querySelector("#search-history-container");
+
+var searchHistoryArray = [];
 
 
 function retrieveSearchHistory() {
+    searchHistoryArray = JSON.parse(localStorage.getItem("searchHistoryArray"))
+    console.log(searchHistoryArray);
+
+    if (!searchHistoryArray) {
+        searchHistoryArray = [];
+
+        console.log("Array is being cleared")
+    } else {
+        
+    console.log("Beginning for loop")
+    for (var i = 0; i < searchHistoryArray.length; i++) {
+        console.log(searchHistoryArray[i]);
+                    let historyButtonEl = document.createElement('button');
+                    historyButtonEl.setAttribute('type', 'button');
+                    historyButtonEl.setAttribute('class', 'button button-info history-item-button');
+                    historyButtonEl.textContent = searchHistoryArray[i];
+
+                    searchHistoryContainerEl.appendChild(historyButtonEl);
+    }
+
+    }
+}
+
+function setSearchHistory() {
+
 
 }
 
@@ -18,6 +46,20 @@ function fetchWeatherData(cityName) {
         if (response.ok) {
             response.json().then(function (data) {
                 console.log(data);
+
+                if (searchHistoryArray.filter((data) => data.cityName == cityName).length == 0) {
+
+                    let historyButtonEl = document.createElement('button');
+                    historyButtonEl.setAttribute('type', 'button');
+                    historyButtonEl.setAttribute('class', 'button button-info history-item');
+                    historyButtonEl.textContent = cityName;
+
+                    searchHistoryContainerEl.appendChild(historyButtonEl);
+                    searchHistoryArray.push(cityName);
+                }
+                localStorage.setItem("searchHistoryArray", JSON.stringify(searchHistoryArray));
+
+
 
                 let currentTime = new Date(data.dt * 1000);
                 let currentTimeEl = $("#current-time");
@@ -129,11 +171,16 @@ function formSubmitHandler(event) {
 
     if (searchTerm) { 
         fetchWeatherData(searchTerm);
-        // searchFormEl.value = "";
+        searchTermEl.value = "";
     } else {
         alert("Please Enter the Name of a City to Search");
     }
 }
 
-
+retrieveSearchHistory();
 searchFormEl.addEventListener("submit", formSubmitHandler);
+
+$(".history-item-button").click(function () {
+    let searchTerm = $(this).text();
+    fetchWeatherData(searchTerm);
+});

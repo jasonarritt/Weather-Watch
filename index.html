@@ -9,7 +9,7 @@
     <title>Weather Watch</title>
 </head>
 <body>
-    <header>
+    <header class="bg-light">
         <h1 class="text-center">Weather Watch</h1>
     </header>
 
@@ -25,13 +25,15 @@
                     <form id="city-search-form">
                         <input id="search-city" type="text" class="form-control" placeholder="San Diego" aria-label="Enter a city">
                         <div class="input-group-append">
-                            <button class="btn btn-info" type="submit" id="search-button">Search
+                            <button class="btn btn-info mt-1" type="submit" id="search-button">Search
                                 <i class="fas fa-search"></i>
                             </button>
                     </form>
                 </div>
-                <div class="">
+                <div class="mt-2">
                     <h3 class="border-bottom-2 mb-4">Search history</h3>
+                </div>
+                <div id="search-history-container" class="bg-white border pb-10">
                 </div>
             </div>
 

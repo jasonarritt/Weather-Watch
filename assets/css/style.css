@@ -28,3 +28,7 @@ h5 {
 #today-info-container {
   justify-content: space-around;
 }
+
+.history-item-button {
+  display: block;
+}
