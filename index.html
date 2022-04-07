@@ -10,12 +10,12 @@
 </head>
 <body>
     <header class="bg-light">
-        <h1 class="text-center">Weather Watch</h1>
+        <h1 class="text-center mb-0">Weather Watch</h1>
     </header>
 
-    <div class="container-fluid">
+    <div class="container-fluid bg-light">
         <div class="row">
-            <div class="col-lg-3 bg-light">
+            <div class="col-lg-3">
                 <div id="search-box">
                     <h5 class="mt-1">Search for a City:</h5>
                     <div class="input-group mb-3">
@@ -31,15 +31,15 @@
                     </form>
                 </div>
                 <div class="mt-2">
-                    <h3 class="border-bottom-2 mb-4">Search history</h3>
+                    <h3 class="border-bottom-2 m-4 text-center">Search history</h3>
                 </div>
-                <div id="search-history-container" class="bg-white border pb-10">
+                <div id="search-history-container" class="bg-white pb-10">
                 </div>
             </div>
 
-            <div class="col-lg-9 bg-light">
-                <div class="row mr-0">
-                    <div class="col-lg-11 card m-3" id="today-weather">
+            <div id="weather-container" class="col-lg-9 bg-light d-none">
+                <div class="row m-auto">
+                    <div class="col-lg-11 border-info card m-3" id="today-weather">
                         <div class="card-body">
                             <h3 id="city-name" class="city-name align-middle text-center text-info">City Name Placeholder</h3>
                             <h5 id="current-time" class="align-middle text-center">Today's Date Placeholder</h5>
@@ -61,10 +61,10 @@
                     </div>
                 </div>
                 <div class="row" id="forecast-container">
-                    <div class="col-12">
+                    <div class="col-lg-12">
                         <h3>Projected Forecast</h3>
                     </div>
-                    <div id="projected-forecast" class="row bg-white border container">
+                    <div id="projected-forecast" class="row bg-light container">
 
                     </div>
                 </div>

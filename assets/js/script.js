@@ -2,6 +2,7 @@
 let searchFormEl = document.getElementById("city-search-form");
 let searchTermEl = document.querySelector("#search-city");
 let searchHistoryContainerEl = document.querySelector("#search-history-container");
+let weatherContainerEl = document.querySelector("#weather-container");
 
 var searchHistoryArray = [];
 
@@ -21,7 +22,7 @@ function retrieveSearchHistory() {
         console.log(searchHistoryArray[i]);
                     let historyButtonEl = document.createElement('button');
                     historyButtonEl.setAttribute('type', 'button');
-                    historyButtonEl.setAttribute('class', 'btn btn-outline-info w-100 history-item-button');
+                    historyButtonEl.setAttribute('class', 'btn btn-outline-info m-1 w-100 history-item-button');
                     historyButtonEl.textContent = searchHistoryArray[i];
 
                     searchHistoryContainerEl.appendChild(historyButtonEl);
@@ -51,7 +52,7 @@ function fetchWeatherData(cityName) {
 
                     let historyButtonEl = document.createElement('button');
                     historyButtonEl.setAttribute('type', 'button');
-                    historyButtonEl.setAttribute('class', 'btn btn-outline-info w-100 history-item-button');
+                    historyButtonEl.setAttribute('class', 'btn btn-outline-info m-1 w-100 history-item-button');
                     historyButtonEl.textContent = cityName;
 
                     searchHistoryContainerEl.appendChild(historyButtonEl);
@@ -122,7 +123,7 @@ function fetchWeatherData(cityName) {
                 });
 
                 let locationID = data.id;
-                let forecastApiURL = "https://api.openweathermap.org/data/2.5/forecast?id=" + locationID + "&appid=" + apiKey;
+                let forecastApiURL = "https://api.openweathermap.org/data/2.5/forecast?id=" + locationID + "&units=imperial&appid=" + apiKey;
 
                 fetch(forecastApiURL)
                 .then(function (response) {
@@ -132,14 +133,53 @@ function fetchWeatherData(cityName) {
 
                             let projectedForecastContainerEl = document.getElementById("projected-forecast");
 
-                            for (i = 1; i < 6; i++) {
+                            for (i = 0; i < 5; i++) {
                                 console.log(i);
                                 //TODO:Figure out forecast
-                                // let dayCardEl = document.createElement("div");
-                                // let dayCardDateEl = document.createElement("p");
+
+                                var indexForDate = i * 8 + 4;
+
+                                let dayCardEl = document.createElement("div");
+                                dayCardEl.setAttribute('class', 'card border-info col-lg-2 m-auto');
+                                let dayCardDateEl = document.createElement("p");
+
+                                let dayCardDate = new Date(data.list[indexForDate].dt * 1000);
+
+                                console.log(dayCardDate);
+
+                                dayCardDateEl.innerText = dayCardDate;
+
+
+                                let dayCardPictureEl = document.createElement("img");
+                                let dayCardPicture = data.list[i].weather[0].icon;
+                                dayCardPictureEl.setAttribute("src", "https://openweathermap.org/img/wn/" + dayCardPicture + "@4x.png");
+                                dayCardPictureEl.setAttribute("alt", data.list[i].weather[0].description);
+
+                                let dayCardTemperatureEl = document.createElement("p");
+                                dayCardTemperatureEl.textContent = "Temperature: " + (data.list[i].main.temp) + " Degrees Fahrenheit";
+                
+                                let dayCardHumidityEl = document.createElement("p");
+                                dayCardHumidityEl.textContent = "Humidity Percentage: " + (data.list[i].main.humidity) + "%";
+                
+                                let dayCardWindEl = document.createElement("p");
+                                dayCardWindEl.textContent = "Wind Speed: " + (data.list[i].wind.speed) + " MPH";
+
+                
+                                dayCardEl.appendChild(dayCardDateEl);
+                                dayCardEl.appendChild(dayCardPictureEl);
+                                dayCardEl.appendChild(dayCardTemperatureEl);
+                                dayCardEl.appendChild(dayCardHumidityEl);
+                                dayCardEl.appendChild(dayCardWindEl);
+
+                                projectedForecastContainerEl.appendChild(dayCardEl);
+
+                                weatherContainerEl.classList.remove('d-none');
+
+
+
                                 // let dayCardDate = new Date(data.list[i].dt * 1000);
                                 // dayCardDateEl.setAttribute("class", "mt-3 mb-0 forecast-date");
-                                // dayCardDateEl.text(dayCardDate)
+                                // dayCardDateEl.text(dayCardDate);
                                 // console.log(dayCardDate);
                             }
 
