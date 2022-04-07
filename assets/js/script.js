@@ -21,7 +21,7 @@ function retrieveSearchHistory() {
         console.log(searchHistoryArray[i]);
                     let historyButtonEl = document.createElement('button');
                     historyButtonEl.setAttribute('type', 'button');
-                    historyButtonEl.setAttribute('class', 'button button-info history-item-button');
+                    historyButtonEl.setAttribute('class', 'btn btn-outline-info w-100 history-item-button');
                     historyButtonEl.textContent = searchHistoryArray[i];
 
                     searchHistoryContainerEl.appendChild(historyButtonEl);
@@ -51,13 +51,14 @@ function fetchWeatherData(cityName) {
 
                     let historyButtonEl = document.createElement('button');
                     historyButtonEl.setAttribute('type', 'button');
-                    historyButtonEl.setAttribute('class', 'button button-info history-item');
+                    historyButtonEl.setAttribute('class', 'btn btn-outline-info w-100 history-item-button');
                     historyButtonEl.textContent = cityName;
 
                     searchHistoryContainerEl.appendChild(historyButtonEl);
                     searchHistoryArray.push(cityName);
+                    localStorage.setItem("searchHistoryArray", JSON.stringify(searchHistoryArray));
+
                 }
-                localStorage.setItem("searchHistoryArray", JSON.stringify(searchHistoryArray));
 
 
 
