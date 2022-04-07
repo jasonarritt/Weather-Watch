@@ -48,7 +48,7 @@ function fetchWeatherData(cityName) {
             response.json().then(function (data) {
                 console.log(data);
 
-                if (!searchHistoryArray.filter((data) => data.cityName == cityName).length == 0) {
+
 
                     console.log("Inside IF condition");
 
@@ -61,7 +61,7 @@ function fetchWeatherData(cityName) {
                     searchHistoryArray.push(cityName);
                     localStorage.setItem("searchHistoryArray", JSON.stringify(searchHistoryArray));
 
-                }
+                
 
 
 
