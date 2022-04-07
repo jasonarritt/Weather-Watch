@@ -22,7 +22,7 @@ function retrieveSearchHistory() {
         console.log(searchHistoryArray[i]);
                     let historyButtonEl = document.createElement('button');
                     historyButtonEl.setAttribute('type', 'button');
-                    historyButtonEl.setAttribute('class', 'btn btn-outline-info m-1 w-100 history-item-button');
+                    historyButtonEl.setAttribute('class', 'btn btn-outline-info mt-1 mb-1 w-100 history-item-button');
                     historyButtonEl.textContent = searchHistoryArray[i];
 
                     searchHistoryContainerEl.appendChild(historyButtonEl);
@@ -48,11 +48,13 @@ function fetchWeatherData(cityName) {
             response.json().then(function (data) {
                 console.log(data);
 
-                if (searchHistoryArray.filter((data) => data.cityName == cityName).length == 0) {
+                if (!searchHistoryArray.filter((data) => data.cityName == cityName).length == 0) {
+
+                    console.log("Inside IF condition");
 
                     let historyButtonEl = document.createElement('button');
                     historyButtonEl.setAttribute('type', 'button');
-                    historyButtonEl.setAttribute('class', 'btn btn-outline-info m-1 w-100 history-item-button');
+                    historyButtonEl.setAttribute('class', 'btn btn-outline-info mt-1 mb-1 w-100 history-item-button');
                     historyButtonEl.textContent = cityName;
 
                     searchHistoryContainerEl.appendChild(historyButtonEl);
@@ -132,6 +134,7 @@ function fetchWeatherData(cityName) {
                             console.log(data);
 
                             let projectedForecastContainerEl = document.getElementById("projected-forecast");
+                            projectedForecastContainerEl.innerHTML = '';
 
                             for (i = 0; i < 5; i++) {
                                 console.log(i);
@@ -143,7 +146,7 @@ function fetchWeatherData(cityName) {
                                 dayCardEl.setAttribute('class', 'card border-info col-lg-2 m-auto');
                                 let dayCardDateEl = document.createElement("p");
 
-                                let dayCardDate = new Date(data.list[indexForDate].dt * 1000);
+                                let dayCardDate = new Date(data.list[indexForDate].dt_txt);
 
                                 console.log(dayCardDate);
 
