@@ -7,3 +7,5 @@ Weather Watch allows the user to search for a city name and view the current wea
 ![](./assets/images/weather-watch-screenshot-2.png)
 
 Weather Watch application is currently available at <https://jasonarritt.github.io/weather-watch/>
+
+EPA document used for UV index colors available at <https://www.epa.gov/sites/default/files/documents/uviguide.pdf>
